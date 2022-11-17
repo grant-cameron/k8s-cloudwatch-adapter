@@ -6,7 +6,23 @@ metadata:
     {{- include "k8s-cloudwatch-adapter-crd.labels" . | nindent 4 }}
 spec:
   group: metrics.aws
-  version: v1alpha1
+  versions: 
+    - name: v1alpha1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                cronSpec:
+                  type: string
+                image:
+                  type: string
+                replicas:
+                  type: integer
   names:
     kind: ExternalMetric
     plural: externalmetrics
